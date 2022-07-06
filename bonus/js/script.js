@@ -2,7 +2,7 @@
 # ****BONUS**
  1. Formattare le date in formato italiano (gg/mm/aaaa)
  2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola  => LF).
- 3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
+ //3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
 */
 
 let i = 1;
@@ -29,7 +29,6 @@ const posts = [
   {
     id: i++,
     autorName: 'Anthony Yamata',
-    autorImage: 'https://unsplash.it/300/300?image=7',
     date: '02/04/2012',
     postText: ' amet, consectet  amet, consectet lorem ipsum dolor sit amet, consectet',
     numberLikes: 42,
@@ -45,6 +44,18 @@ const posts = [
   },
 ];
 
+//#Functions
+const getInitialName = (name)=> {
+  let initialName = name.charAt(0);
+  for (let i=0; i<name.length; i++) {
+    if (name[i] == " "){
+      initialName += name.charAt(i + 1);
+    }
+  }
+
+  return initialName;
+}
+
 const postContainer = document.querySelector(".posts-list");
 
 let postList = "";
@@ -53,8 +64,13 @@ for (const post of posts) {
   postList += `<div class="post">
   <div class="post__header">
     <div class="post-meta">
-      <div class="post-meta__icon">
-        <img class="profile-pic" src="${post.autorImage}" alt="${post.autorName}" />
+      <div class="post-meta__icon">`
+      if (post.hasOwnProperty("autorImage")) {
+        postList += `<img class="profile-pic" src="${post.autorImage}" alt="${post.autorName}" />`
+      } else {
+        postList += `<div class="profile-pic-default">${getInitialName(post.autorName)}</div>`
+      }
+      postList += `
       </div>
       <div class="post-meta__data">
         <div class="post-meta__author">${post.autorName}</div>
