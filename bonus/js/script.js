@@ -93,7 +93,14 @@ const buttonLike = document.querySelectorAll(".js-like-button");
 const likesCounter = document.querySelectorAll(".js-likes-counter")
 for (let i = 0; i < buttonLike.length; i++) {
   buttonLike[i].addEventListener("click", (e)=> {
-    e.target.classList.add("like-button--liked")
-    likesCounter[i].innerHTML = `${posts[i].numberLikes + 1}</b> `;
+
+    if (!buttonLike[i].classList.contains("like-button--liked")) {
+      buttonLike[i].classList.add("like-button--liked");
+      likesCounter[i].innerHTML = `${posts[i].numberLikes + 1}</b> `;
+
+    }else {
+      buttonLike[i].classList.remove("like-button--liked");
+      likesCounter[i].innerHTML = `${posts[i].numberLikes}</b> `;
+    }
   })
 }
