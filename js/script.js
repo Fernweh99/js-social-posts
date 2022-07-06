@@ -1,7 +1,7 @@
 /*
-#Milestone 2
-Prendendo come riferimento il layout di esempio presente nell'html,
-stampiamo i post del nostro feed.
+#Milestone 3
+Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo
+del bottone e incrementiamo il counter dei likes relativo.
 */
 
 let i = 1;
@@ -47,6 +47,7 @@ const posts = [
 const postContainer = document.querySelector(".posts-list");
 
 let postList = "";
+
 for (const post of posts) {
   postList += `<div class="post">
   <div class="post__header">
@@ -84,6 +85,15 @@ for (const post of posts) {
     </div>
   </div>
 </div>`
+
 }
- 
 postContainer.innerHTML = postList;
+
+const buttonLike = document.querySelectorAll(".js-like-button");
+const likesCounter = document.querySelectorAll(".js-likes-counter")
+for (let i = 0; i < buttonLike.length; i++) {
+  buttonLike[i].addEventListener("click", (e)=> {
+    e.target.classList.add("like-button--liked")
+    likesCounter[i].innerHTML = `${posts[i].numberLikes + 1}</b> `;
+  })
+}
