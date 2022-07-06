@@ -1,7 +1,8 @@
 /*
-#Milestone 3
-Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo
-del bottone e incrementiamo il counter dei likes relativo.
+# ****BONUS**
+ 1. Formattare le date in formato italiano (gg/mm/aaaa)
+ 2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola  => LF).
+ 3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
 */
 
 let i = 1;
